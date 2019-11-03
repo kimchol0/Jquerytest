@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.4.0/jquery.js"></script>
+    <link href="package.json">
+
+</head>
+<body>
+
+<table class="table table-bordered" id="tableset">
+
+    <tr>
+        <th>名字</th>
+        <th>开始时间</th>
+        <th>是否真实</th>
+        <th>设备</th>
+    </tr>
+    <td>这行是写死的</td>
+    <td>这行是写死的</td>
+    <td>这行是写死的</td>
+    <td>这行是写死的</td>
+
+</table>
+
+<button type="button" class="btn btn-default" onclick="submit()">提交</button>
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+    $(function(){
+        $.ajax({
+            url:'package.json',
+            type:'get',
+            dataType:'json',
+            success:function(data){
+                $.each(data.data,function(index,item){
+                    var tr;
+                    tr='<td>'+item.name+'</td>'
+                        +'<td>'+item.startTime+'</td>'
+                        +'<td>'+item.is_true+'</td>'
+                        +'<td>'+item.device+'</td>';
+                    $('#tableset').append('<tr>'+tr+'</tr>')
+                })
+            }
+        })
+    })
+
+
+</script>

@@ -1,0 +1,33 @@
+<script type="text/javascript">
+
+    function outStock() {
+
+        window.location.href = "${pageContext.request.contextPath }/access_records/outAccess_recordsTable";
+
+    }
+
+    function inStock(accNo) {
+        layer.confirm('确认入库？', {
+            btn: ['确认','取消'] //按钮
+        }, function(){
+            window.location.href = "${pageContext.request.contextPath }/access_records/inStock?accNo="+accNo;
+
+        }, function(){
+
+        });
+    }
+
+    function send(accNo) {
+        layer.confirm('确认送达？', {
+            btn: ['确认','取消'] //按钮
+        }, function(){
+            window.location.href = "${pageContext.request.contextPath }/access_records/send?accNo="+accNo;
+
+        }, function(){
+
+        });
+    }
+
+
+
+</script>

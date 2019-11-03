@@ -1,0 +1,13 @@
+<script>
+    var t=5;
+    var timer=setInterval(time,1000);
+    var spans=document.getElementById("begin");
+    function time(){
+        t--;
+        spans.innerHTML='<span>'+t+'</span>';
+        if (t==0){
+            clearInterval(timer);
+            return window.location.href='${pageContext.request.contextPath }/post/searchNumber';
+        }console.log(t);
+    }
+</script>

@@ -1,0 +1,27 @@
+<script type="text/javascript">
+
+$.ajax({
+<--后台url-->
+	url:'/userManage/delete'，
+	<--后台接受id，通过id实现数据的更改-->
+	data:{
+		"id":id
+	},
+	<--成功后删除该tr节点-->
+	success：function(){
+	<--a标签的父标签的父标签，obj指函数传过来的this-->
+		var tr=obj.parentNode.ParentNode;
+		tr.parentNode.removeChild(tr);
+	}
+})
+
+
+function test(){
+	$.ajax({
+		url:'',
+		type:'post',//自选
+		data:form.serialize();//获取表单数据，从表单中传数据
+	})
+}
+
+</script>

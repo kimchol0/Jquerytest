@@ -1,0 +1,111 @@
+<script type="text/javascript">
+
+    $("#poWeight").change(function(){
+        var poWeight = $("#poWeight").val();
+        //	var price = $("#poPrice").val();
+        if(poWeight<5){
+            document.getElementById('poPrice').value=20;
+        }else if(poWeight>=5){
+            document.getElementById('poPrice').value=(poWeight-5)*3;
+        }else {
+            document.getElementById('poPrice').value="输入错误！";
+        }
+
+    })
+
+    $(function(){
+
+        $.ajax({
+            type:"post",
+            url:"${pageContext.request.contextPath}/city/provice",
+            dataType:"json",
+            success:function(result){
+                for(var i=0;i<result.length;i++ ){
+                    $("#s1").append("<option value='"+result[i].cProvince+"'>"+result[i].cProvince+"</option>");
+                }
+            }
+        });
+    })
+
+    $("#s1").change(function(){
+        $("#s2 option:gt(0)").remove();
+        $("#s3 option:gt(0)").remove();
+        var cProvince = $("#s1 option:selected").val();
+        $.ajax({
+            type:"post",
+            url:"${pageContext.request.contextPath}/city/city2",
+            data:{"cProvince":cProvince},
+            dataType:"json",
+            success:function(result){
+                for(var i=0;i<result.length;i++ ){
+                    $("#s2").append("<option value='"+result[i].cCity+"'>"+result[i].cCity+"</option>");
+                }
+            }
+        })
+    })
+
+    $("#s2").change(function(){
+        $("#s3 option:gt(0)").remove();
+        var cCity = $("#s2 option:selected").val();
+        $.ajax({
+            type:"post",
+            url:"${pageContext.request.contextPath}/city/area",
+            data:{"cCity":cCity},
+            dataType:"json",
+            success:function(result){
+                for(var i=0;i<result.length;i++ ){
+                    $("#s3").append("<option value='"+result[i].cno+"'>"+result[i].cArea+"</option>");
+                }
+            }
+        })
+    })
+
+
+
+
+
+    $(function(){
+        $.ajax({
+            type:"post",
+            url:"${pageContext.request.contextPath}/city/provice",
+            dataType:"json",
+            success:function(result){
+                for(var i=0;i<result.length;i++ ){
+                    $("#d1").append("<option value='"+result[i].cProvince+"'>"+result[i].cProvince+"</option>");
+                }
+            }
+        });
+    })
+
+    $("#d1").change(function(){
+        $("#d2 option:gt(0)").remove();
+        $("#d3 option:gt(0)").remove();
+        var cProvince = $("#d1 option:selected").val();
+        $.ajax({
+            type:"post",
+            url:"${pageContext.request.contextPath}/city/city2",
+            data:{"cProvince":cProvince},
+            dataType:"json",
+            success:function(result){
+                for(var i=0;i<result.length;i++ ){
+                    $("#d2").append("<option value='"+result[i].cCity+"'>"+result[i].cCity+"</option>");
+                }
+            }
+        })
+    })
+
+    $("#d2").change(function(){
+        $("#d3 option:gt(0)").remove();
+        var cCity = $("#d2 option:selected").val();
+        $.ajax({
+            type:"post",
+            url:"${pageContext.request.contextPath}/city/area",
+            data:{"cCity":cCity},
+            dataType:"json",
+            success:function(result){
+                for(var i=0;i<result.length;i++ ){
+                    $("#d3").append("<option value='"+result[i].cno+"'>"+result[i].cArea+"</option>");
+                }
+            }
+        })
+    })
